@@ -1,45 +1,45 @@
-**# Hand Landmark Detection ✋
+# Hand Landmark Detection ✋
 
-Program deteksi tangan real-time menggunakan **OpenCV** dan **MediaPipe**. Program ini mendeteksi landmark tangan dari webcam, mengenali jari mana saja yang sedang terangkat, lalu menampilkan pesan **"I LOVE YOU SO MUCH"** di layar sesuai kombinasi jari yang diangkat (terinspirasi dari isyarat tangan "I Love You" dalam ASL).
+A real-time hand detection program built with **OpenCV** and **MediaPipe**. It detects hand landmarks from a webcam feed, recognizes which fingers are raised, and displays the message **"I LOVE YOU SO MUCH"** on screen based on the finger combination (inspired by the ASL "I Love You" hand sign).
 
-## Fitur
+## Features
 
-- Deteksi tangan real-time dari webcam menggunakan MediaPipe Hands
-- Mendukung deteksi hingga 2 tangan sekaligus
-- Menggambar landmark & koneksi tangan pada frame video
-- Mendeteksi status terangkat/tidaknya masing-masing jari (jempol, telunjuk, tengah, manis, kelingking)
-- Menampilkan teks di layar sesuai jari yang terangkat
+- Real-time hand detection from webcam using MediaPipe Hands
+- Supports detecting up to 2 hands at once
+- Draws hand landmarks & connections on the video frame
+- Detects whether each finger (thumb, index, middle, ring, pinky) is raised
+- Displays on-screen text based on which fingers are raised
 
-## Struktur Proyek
+## Project Structure
 
 ```
 handrecognt/
-├── handDetection.py   # Modul class HandDetection (wrapper MediaPipe Hands)
-├── utama.py           # Program utama: baca webcam, deteksi jari, tampilkan teks
+├── handDetection.py   # HandDetection class (wrapper around MediaPipe Hands)
+├── utama.py           # Main program: reads webcam, detects fingers, displays text
 └── README.md
 ```
 
-## Cara Kerja
+## How It Works
 
-- **`handDetection.py`** berisi class `HandDetection` yang membungkus `mediapipe.solutions.hands`. Method `findHandLandMarks()` menerima sebuah frame gambar, memprosesnya, dan mengembalikan frame hasil (dengan gambar landmark jika `draw=True`) beserta list koordinat landmark setiap tangan yang terdeteksi.
-- **`utama.py`** membaca frame dari webcam, memanggil `HandDetection` untuk mendapatkan landmark tangan, lalu membandingkan posisi Y ujung jari (*tip*) dengan pangkal jari (*base*) untuk menentukan apakah jari tersebut sedang terangkat.
+- **`handDetection.py`** contains the `HandDetection` class, which wraps `mediapipe.solutions.hands`. Its `findHandLandMarks()` method takes an image frame, processes it, and returns the resulting frame (with landmarks drawn if `draw=True`) along with a list of landmark coordinates for each detected hand.
+- **`utama.py`** reads frames from the webcam, calls `HandDetection` to get the hand landmarks, then compares the Y position of each fingertip against its base to determine whether that finger is raised.
 
 ## Requirements
 
 - Python 3.10
 - [OpenCV](https://pypi.org/project/opencv-python/) (`opencv-python`)
 - [MediaPipe](https://pypi.org/project/mediapipe/) (`mediapipe`)
-- Webcam
+- A webcam
 
-## Instalasi
+## Installation
 
-1. Clone repository ini:
+1. Clone this repository:
    ```bash
-   git clone <url-repo-anda>
+   git clone <your-repo-url>
    cd handrecognt
    ```
 
-2. (Opsional tapi disarankan) buat virtual environment:
+2. (Optional but recommended) create a virtual environment:
    ```bash
    python -m venv env
    # Windows
@@ -48,30 +48,30 @@ handrecognt/
    source env/bin/activate
    ```
 
-3. Install dependency:
+3. Install dependencies:
    ```bash
    pip install opencv-python mediapipe
    ```
 
-## Cara Menjalankan
+## Usage
 
 ```bash
 python utama.py
 ```
 
-- Jendela webcam akan terbuka dan menampilkan hasil deteksi tangan.
-- Angkat jari untuk melihat teks yang sesuai muncul di layar.
-- Tekan tombol **`a`** untuk keluar dari program.
+- A webcam window will open showing the hand detection results.
+- Raise your fingers to see the corresponding text appear on screen.
+- Press **`a`** to quit the program.
 
-## Catatan
+## Notes
 
-- Folder `env/` (virtual environment) dan `__pycache__/` sebaiknya **tidak** ikut di-commit ke GitHub. Tambahkan ke `.gitignore`:
+- The `env/` (virtual environment) and `__pycache__/` folders should **not** be committed to GitHub. Add them to `.gitignore`:
   ```
   env/
   __pycache__/
   *.pyc
   ```
 
-## Lisensi
+## License
 
-Bebas digunakan dan dimodifikasi untuk keperluan pembelajaran.**
+Free to use and modify for learning purposes.
